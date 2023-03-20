@@ -4,8 +4,8 @@ const { PubSub } =require('graphql-subscriptions') ;
 const typeDefs = require('./graphql/typeDef');
 const resolvers = require('./graphql/resolvers');
 const { MONGODB } = require('./config.js');
-const WebSocket = require('ws');
-const { SubscriptionServer } = require('subscriptions-transport-ws');
+
+const serverless = require('serverless-http')
 const pubsub = new PubSub();;
 
 const PORT = process.env.port || 5000;
@@ -14,15 +14,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req, pubsub }),
-  subscriptions: {
-   
-    path: '/subscriptions',
-    // Khởi tạo một WebSocket Server mới cho subscriptions
-    // với giao thức subscriptions-transport-ws
-    server: new WebSocket.Server({
-      noServer: true
-    })
-  }
+  
 });
 
 mongoose
@@ -37,5 +29,5 @@ mongoose
   .catch(err => {
     console.error(err)
   })
-
+exports.handler = serverless(server.createHandler())
  

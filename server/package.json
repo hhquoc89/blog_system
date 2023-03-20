@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2",
     "nodemon": "^2.0.21",
+    "serverless-http": "^3.2.0",
     "subscriptions-transport-ws": "^0.11.0",
     "wrangler": "^2.12.3",
     "ws": "^8.13.0"
