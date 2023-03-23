@@ -39,6 +39,7 @@ module.exports = gql `
     type Query {
         getPosts: [Post]
         getPost(postId: ID!): Post
+        getPostsSearch(keyword: String): [Post]
     }
     type Mutation{
         register(registerInput: RegisterInput): User!

@@ -22,7 +22,19 @@ module.exports = {
             } catch (err) {
               throw new Error(err);
             }
+        },
+        async getPostsSearch  (_, { keyword })  {
+          try {
+            let posts = await Post.find().sort({ createdAt: -1 });
+            if (keyword) {
+              posts = posts.filter((post) => post.body.includes(keyword));
+            }
+            return posts;
+          } catch (err) {
+            throw new Error(err);
           }
+        },
+          
     },
     Mutation: {
         async createPost(_, { body }, context) {

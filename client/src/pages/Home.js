@@ -5,6 +5,7 @@ import { Container, Grid, Transition  } from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
 import PostCard from '../components/PostCard';
 import PostForm from '../components/PostForm';
+import Search from '../components/Search'
 import { FETCH_POSTS_QUERY } from '../util/graphql';
 
 function Home() {
@@ -21,13 +22,14 @@ function Home() {
   const posts = data?.getPosts;
 
   return (
-    <Container>
+    <Container className="my-container">
       {user && (
           <Grid.Column>
             <PostForm />
           </Grid.Column>
         )}
-      <Grid columns={2}>
+      <Search/>
+      <Grid columns={1}>
       <Grid.Row className="page-title">
         <h1>Các bài đăng hiện tại</h1>
       </Grid.Row>
